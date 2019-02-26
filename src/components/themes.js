@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import MultipleSelector from './shared/multipleSelector';
 import {Text, Button} from 'native-base';
 import {styles} from '../styles/Indicators'
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+
 
 class Themes extends PureComponent {
     constructor(props) {
@@ -82,24 +84,28 @@ class Themes extends PureComponent {
 
     render() {
         return (
-            <View>
+            <KeyboardAwareScrollView>
+
                 <View>
-                    <MultipleSelector
-                        addSearchedData={() => this.addSearchedTheme(this.state.search)}
-                        search={this.state.search}
-                        showData={() => this.showThemes()}
-                        searchPlaceHolder = "Search Themes"
-                        showSearchedData={() => this.showSearchedThemes()}
-                        title='Select Themes'
-                        updateSearch={this.updateSearch}
-                    />
+                    <View>
+                        <MultipleSelector
+                            addSearchedData={() => this.addSearchedTheme(this.state.search)}
+                            search={this.state.search}
+                            showData={() => this.showThemes()}
+                            searchPlaceHolder = "Search Themes"
+                            showSearchedData={() => this.showSearchedThemes()}
+                            title='Select Themes'
+                            updateSearch={this.updateSearch}
+                        />
+                    </View>
+                    <View>
+                        <Button onPress={() => this.goToTags()} style={styles.submitButton}>
+                            <Text>Submit</Text>
+                        </Button>
+                    </View>
                 </View>
-                <View>
-                    <Button onPress={() => this.goToTags()} style={styles.submitButton}>
-                        <Text>Submit</Text>
-                    </Button>
-                </View>
-            </View>
+            </KeyboardAwareScrollView>
+
         );
     }
 }
